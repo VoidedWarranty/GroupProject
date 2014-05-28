@@ -18,27 +18,40 @@ def quitApp(event): #<---- how to quit the app and save
     root.destroy()
 
 def moveUp(event): #hero's movement: up
-    print "moveUp method works"
+    global MainChar, x, y
+    y = y-40
+    canvas.coords(MainChar,x,y)
+    print x
+    root.update()
     
 def moveDown(event):#hero's movement: down
-    print "moveDown method works"
-    
+    global MainChar, x, y
+    y = y+40
+    canvas.coords(MainChar,x,y)
+    root.update()    
 def moveLeft(event):#hero's movement: left
-    print "moveLeft method works"
-    
+    global MainChar, x, y
+    x = x-40
+    canvas.coords(MainChar,x,y)
+    root.update()    
 def moveRight(event):#hero's movement: right
-    print "moveRight method works"
-
+    global MainChar, x, y
+    x = x+40
+    canvas.coords(MainChar,x,y)
+    root.update()
 def useItem(event): #use an item in your hand
     itemUse(None)
     print "useItem Method works"
     
 def mainSpawn(): #spawns main character
-    mainChar = ImageTk.PhotoImage(Image.open("Karel.jpg"))
-    canvas.create_image(40,40, image=mainChar)
-    print "main character has been called"
+    global MainChar, x, y
+    x = 400
+    y = 400
+    #mainChar = ImageTk.PhotoImage(Image.open("Karel.jpg"))
+    MainChar = canvas.create_image(x,y, image=mainChar, tag='MainC')
+    #print "main character has been called"
 
-
+global MainC
     
 user32 = ctypes.windll.user32 #renders size to fullscreen
 w = int(user32.GetSystemMetrics(0))
@@ -63,22 +76,24 @@ root.bind("s", moveDown)
 root.bind("a", moveLeft)
 root.bind("d", moveRight)
 root.bind("<Button-1>",useItem)
+
 canvas.pack()
 
 
 
 
-
 photoimage = ImageTk.PhotoImage(Image.open("dungeonTile.jpg"))
-#im = Image.open("Karel.png")
-#print im.mode
+mainChar = ImageTk.PhotoImage(Image.open("Karel.png"))
+im = Image.open("Karel.png")
+print im.mode
 x = 0
 y = 0
-#for i in range(f+1):
-#    for k in range(g+1):
-#        canvas.create_image(i*40, k*40, image=photoimage)
+for i in range(f+1):
+    for k in range(g+1):
+        canvas.create_image(i*40, k*40, image=photoimage)
 mainSpawn() #spawns main
 mobSpawn()  #spawns mobs
 createInterface() #creates user interface
 frame.pack()
+#canvas.pack()
 root.mainloop()
