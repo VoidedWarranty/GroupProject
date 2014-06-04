@@ -81,8 +81,11 @@ class mob:
             self.moveLeft()
         else:
             self.moveRight()
+<<<<<<< HEAD
 
 
 
 
         
+=======
+>>>>>>> 5ee138f80b8fd3f1a295caede3869a3325f0dc37
