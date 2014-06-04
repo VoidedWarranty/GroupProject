@@ -1,8 +1,6 @@
 #Names: Ian Carr, Samuel Kebadu, Jerius Samra
 #File: _init_.py
-#Description: this is thhe main file that is initialized. You start the Program here
-
-import time, wave, pymedia.audio.sound as sound
+#Description: this is the main file that is initialized. You start the Program here
 from Tkinter import Tk, Frame, Canvas # <---- all imports used for main
 from multiprocessing import Process
 import ImageTk
@@ -15,45 +13,63 @@ from mob import *
 from interface import *
 from fileSave import *
 from Sound import *
-
+from Move import *
+from hero import *
+global bill
+index = 0
+bill = 0
 
 def quitApp(event):#<---- how to quit the app and save
     global root, p, q
-    print "stopping..."
-    p.terminate()
+    print "stoppi'ng..."
+    #p.terminate()
     save()
     root.destroy()
 
 def moveUp(event): #hero's movement: up
-    global MainChar, x, y, canvas
-    y = y-40
-    canvas.coords(MainChar,x,y)
-    print x
+    global MainChar, x, y, canvas, i, k, bob
+    Link.moveUp()
+    Link.setHealth(int(Link.getHealth())-2)
+    print Link.getHealth()
+    canvas.coords(MainChar,Link.getX(),Link.getY())
+    actMove()
+    canvas.delete(bob)
+    createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
+    #print "done"
     root.update()
     
 def moveDown(event):#hero's movement: down
     global MainChar, x, y, canvas
-    y = y+40
-    canvas.coords(MainChar,x,y)
+    Link.moveDown()
+    canvas.coords(MainChar,Link.getX(),Link.getY())
+    createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
+    actMove()
     root.update()    
 def moveLeft(event):#hero's movement: left
     global MainChar, x, y, canvas
-    x = x-40
-    canvas.coords(MainChar,x,y)
+    Link.moveLeft()
+    canvas.coords(MainChar,Link.getX(),Link.getY())
+    createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
+    actMove()
     root.update()    
 def moveRight(event):#hero's movement: right
-    global MainChar, x, y, canvas
-    x = x+40
-    canvas.coords(MainChar,x,y)
+    global MainChar, x, y, canvas, Link
+    Link.moveRight()
+    canvas.coords(MainChar,Link.getX(),Link.getY())
+    createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
+    actMove()
     root.update()
 def useItem(event): #use an item in your hand
     itemUse(None)
+    actMove()
     print "useItem Method works"
+    root.update()
     
 def mainSpawn(): #spawns main characte
-    global MainChar, x, y, canvas, mainChar
+    global MainChar, x, y, canvas, mainChar, Link
     x = 400
     y = 400
+    Link = hero(20,20,None,x,y)
     #mainChar = ImageTk.PhotoImage(Image.open("Karel.jpg"))
     MainChar = canvas.create_image(x,y, image=mainChar, tag='MainC')
     #print "main character has been called"
@@ -63,7 +79,7 @@ def music():
     winsound.PlaySound('Naruto-Breakdown.wav', winsound.SND_FILENAME)
 
 def start():
-    global canvas, mainChar, root
+    global canvas, mainChar, root, i, k, bob, Link, bill
     user32 = ctypes.windll.user32 #renders size to fullscreen
     w = int(user32.GetSystemMetrics(0))
     h = int(user32.GetSystemMetrics(1))
@@ -99,14 +115,22 @@ def start():
     print im.mode
     x = 0
     y = 0
-    for i in range(f+1):
-        for k in range(g+1):
-            canvas.create_image(i*40, k*40, image=photoimage)
+    print bill, "bill"
+    if bill == 0:
+        for i in range(f+1):
+            for k in range(g+1):
+                canvas.create_image(i*40, k*40, image=photoimage)
+        bill = 1
     mainSpawn() #spawns main
     mobSpawn()  #spawns mobs
-    createInterface() #creates user interface
+    #bob = Label(canvas,width=w,height=h, text = "health", fg = 'red', font = ('Times', 30, 'bold'), anchor = 'nw')
+    #bob.pack()
+    bob = canvas.create_text(w,h, text = "bob", fill = "red", font = ('Times', 30, 'bold'), anchor = 'nw')
+    createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth()) #creates user interface
+    #bob.pack()
     frame.pack()
     print "music"
+    #canvas.create_text(i,k, text = "health", fill = 'red', font = ('Times', 30, 'bold'), anchor = 'nw')
 
     #f= wave.open( 'Naruto-Breakdown.wav', 'rb' )
     #sampleRate= f.getframerate()
@@ -119,8 +143,10 @@ def start():
     #canvas.pack()
     root.mainloop()
 if __name__ == '__main__':
-    p = Process(target=music)
-    p.start()
+    global p, q
     start()
+    #p = Process(target=music)
+    #p.start()
+
 
 
