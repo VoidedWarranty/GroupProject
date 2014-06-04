@@ -21,7 +21,7 @@ bill = 0
 
 def quitApp(event):#<---- how to quit the app and save
     global root, p, q
-    print "stoppi'ng..."
+    print "stopping..."
     #p.terminate()
     save()
     root.destroy()
