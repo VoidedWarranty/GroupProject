@@ -12,18 +12,34 @@ from mob import *
 from interface import *
 from fileSave import *
 from Sound import *
-from Move import *
 from random import *
-
-def mobSpawn(r,inn): #spawns a random amount of mobs for each floor
+global i, d, f
+d = None
+i = None
+f = None
+def actMove(num, r):
+    for x in range(num):
+        d["mob" + str(x)].moveUp()
+        r.coords(f["pic" + str(x)],d["mob" + str(x)].getX(),d["mob" + str(x)].getY())
+        print "derp2"
+        
+    print "done"
+    
+def mobSpawn(r,inn): #spawns a random amount of mobs for each floor\
+    global i, d, f
     i = randint(1,6)
     d={}
     f={}
     for x in range(i):
             d["mob{0}".format(x)]= mob(10,10,2,None,200-(x*40),400)
-            f["pic{0}".format(x)]= r.create_image(200-(x*40),400, image=inn)
+            f["pic{0}".format(x)]= r.create_image(d["mob"+str(x)].getX(),d["mob"+str(x)].getY(), image=inn)
+            print "derp"
     print d
     print f
+
+def numMob():
+    global i
+    return i
         
         
 
@@ -37,8 +53,10 @@ class mob:
         mitem = item
         attack = mattack
     def getX(self):
+        print "getX", mx
         return mx
     def getY(self):
+        print "getY", my
         return my
     def getItem(self):
         return mitem
@@ -51,7 +69,7 @@ class mob:
         my-=40
     def moveDown(self):
         global my
-        my
+        my+=40
     def moveLeft(self):
         global mx
         mx-=40

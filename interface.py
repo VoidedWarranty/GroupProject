@@ -12,7 +12,6 @@ from mob import *
 from interface import *
 from fileSave import *
 from Sound import *
-from Move import *
 from random import randint
 
 def createInterface(f,r,w,h,health,mhealth):
