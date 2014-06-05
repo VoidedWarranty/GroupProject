@@ -13,7 +13,6 @@ from mob import *
 from interface import *
 from fileSave import *
 from Sound import *
-from Move import *
 from hero import *
 global bill
 index = 0
@@ -32,7 +31,7 @@ def moveUp(event): #hero's movement: up
     Link.setHealth(int(Link.getHealth())-2)
     print Link.getHealth()
     canvas.coords(MainChar,Link.getX(),Link.getY())
-    actMove()
+    actMove(numMob(),canvas)
     canvas.delete(bob)
     createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
     #print "done"
@@ -43,25 +42,25 @@ def moveDown(event):#hero's movement: down
     Link.moveDown()
     canvas.coords(MainChar,Link.getX(),Link.getY())
     createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
-    actMove()
+    actMove(numMob(),canvas)
     root.update()    
 def moveLeft(event):#hero's movement: left
     global MainChar, x, y, canvas
     Link.moveLeft()
     canvas.coords(MainChar,Link.getX(),Link.getY())
     createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
-    actMove()
+    actMove(numMob(),canvas)
     root.update()    
 def moveRight(event):#hero's movement: right
     global MainChar, x, y, canvas, Link
     Link.moveRight()
     canvas.coords(MainChar,Link.getX(),Link.getY())
     createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
-    actMove()
+    actMove(numMob(),canvas)
     root.update()
 def useItem(event): #use an item in your hand
     itemUse(None)
-    actMove()
+    actMove(numMob())
     print "useItem Method works"
     root.update()
     
@@ -111,6 +110,7 @@ def start():
 
     photoimage = ImageTk.PhotoImage(Image.open("dungeonTile.jpg"))
     mainChar = ImageTk.PhotoImage(Image.open("Karel.png"))
+    enemy = ImageTk.PhotoImage(Image.open("LobsterRoach.png"))
     im = Image.open("Karel.png")
     print im.mode
     x = 0
@@ -122,7 +122,7 @@ def start():
                 canvas.create_image(i*40, k*40, image=photoimage)
         bill = 1
     mainSpawn() #spawns main
-    mobSpawn()  #spawns mobs
+    mobSpawn(canvas,enemy)  #spawns mobs
     #bob = Label(canvas,width=w,height=h, text = "health", fg = 'red', font = ('Times', 30, 'bold'), anchor = 'nw')
     #bob.pack()
     bob = canvas.create_text(w,h, text = "bob", fill = "red", font = ('Times', 30, 'bold'), anchor = 'nw')

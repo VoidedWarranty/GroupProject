@@ -10,8 +10,6 @@ from mob import *
 from interface import *
 from fileSave import *
 from Sound import *
-from Move import *
-
 class hero:
     def __init__(self,health, maxhealth, item, x, y):
         global mx,my,mhealth,mmhealth,mitem
