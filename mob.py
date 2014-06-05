@@ -19,12 +19,11 @@ i = None
 f = None
 def actMove(num, r):
     for x in range(num):
-        d["mob" + str(x)].moveUp()
+        d["mob" + str(x)].interact(mainSpawn.getX(), mainSpawn.getY())
         r.coords(f["pic" + str(x)],d["mob" + str(x)].getX(),d["mob" + str(x)].getY())
         print "derp2"
         
     print "done"
-    
 def mobSpawn(r,inn): #spawns a random amount of mobs for each floor\
     global i, d, f
     i = randint(1,6)
@@ -108,3 +107,9 @@ class mob:
             self.moveLeft()
         else:
             self.moveRight()
+    def interact(self, x, y):
+        if ((((y-self.getY())**2+(x-self.getX())**2)**.5) < 2.0):
+            self.Attack(mainSpawn.getHealth, mainChar)
+        else:
+            pathfind(x,y)
+        
