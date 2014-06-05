@@ -18,10 +18,12 @@ from random import *
 def mobSpawn(r,inn): #spawns a random amount of mobs for each floor
     i = randint(1,6)
     d={}
+    f={}
     for x in range(i):
             d["mob{0}".format(x)]= mob(10,10,2,None,200-(x*40),400)
-            d["pic{0}".format(x)]= r.create_image(200-(x*40),400, image=inn)
+            f["pic{0}".format(x)]= r.create_image(200-(x*40),400, image=inn)
     print d
+    print f
         
         
 
