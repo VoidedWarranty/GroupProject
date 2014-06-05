@@ -111,6 +111,7 @@ def start():
 
     photoimage = ImageTk.PhotoImage(Image.open("dungeonTile.jpg"))
     mainChar = ImageTk.PhotoImage(Image.open("Karel.png"))
+    enemy = ImageTk.PhotoImage(Image.open("LobsterRoach.png"))
     im = Image.open("Karel.png")
     print im.mode
     x = 0
@@ -122,7 +123,7 @@ def start():
                 canvas.create_image(i*40, k*40, image=photoimage)
         bill = 1
     mainSpawn() #spawns main
-    mobSpawn()  #spawns mobs
+    mobSpawn(canvas,enemy)  #spawns mobs
     #bob = Label(canvas,width=w,height=h, text = "health", fg = 'red', font = ('Times', 30, 'bold'), anchor = 'nw')
     #bob.pack()
     bob = canvas.create_text(w,h, text = "bob", fill = "red", font = ('Times', 30, 'bold'), anchor = 'nw')
