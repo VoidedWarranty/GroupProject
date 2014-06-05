@@ -33,8 +33,6 @@ def mobSpawn(r,inn): #spawns a random amount of mobs for each floor\
             d["mob{0}".format(x)]= mob(10,10,2,None,200-(x*40),400)
             f["pic{0}".format(x)]= r.create_image(d["mob"+str(x)].getX(),d["mob"+str(x)].getY(), image=inn)
             print "derp"
-    print d
-    print f
 
 def numMob():
     global i
@@ -52,10 +50,8 @@ class mob:
         mitem = item
         attack = mattack
     def getX(self):
-        print "getX", mx
         return mx
     def getY(self):
-        print "getY", my
         return my
     def getItem(self):
         return mitem
@@ -97,7 +93,7 @@ class mob:
         mi=0
         for i in range(len(listMoves)):
             if m<listMoves[i]:
-                m=myList[i]
+                m=listMoves[i]
                 mi=i
         if (mi == 0):
             self.moveUp()
@@ -109,7 +105,7 @@ class mob:
             self.moveRight()
     def interact(self, x, y, hero):
         if ((((y-self.getY())**2+(x-self.getX())**2)**.5) < 2.0):
-            self.Attack(hero.getHealth(), hero)
+            self.attack(hero.getHealth(), hero)
         else:
             self.pathfind(x,y)
         
