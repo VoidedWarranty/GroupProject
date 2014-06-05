@@ -17,9 +17,9 @@ global i, d, f
 d = None
 i = None
 f = None
-def actMove(num, r):
+def actMove(num, r, l):
     for x in range(num):
-        d["mob" + str(x)].interact(mainSpawn.getX(), mainSpawn.getY())
+        d["mob" + str(x)].interact(l.getX(), l.getY(), l)
         r.coords(f["pic" + str(x)],d["mob" + str(x)].getX(),d["mob" + str(x)].getY())
         print "derp2"
         
@@ -90,7 +90,7 @@ class mob:
     def getAttack(self):
         return attack
     def attack(self, heroHealth, r):
-        r.setHealth(herohealth - (self.getAttack() + randint(-(self.getAttack()/10), self.getAttack()/10)))
+        r.setHealth(heroHealth - (self.getAttack() + randint(-(self.getAttack()/10), self.getAttack()/10)))
     def pathfind(self, x, y):
         listMoves = [(((y-self.getY()-40)**2+(x-self.getX())**2)**.5), (((y-self.getY()+40)**2+(x-self.getX())**2)**.5), (((y-self.getY())**2+(x-self.getX()-40)**2)**.5), (((y-self.getY())**2+(x-self.getX()+40)**2)**.5)]
         m=0
@@ -107,9 +107,9 @@ class mob:
             self.moveLeft()
         else:
             self.moveRight()
-    def interact(self, x, y):
+    def interact(self, x, y, hero):
         if ((((y-self.getY())**2+(x-self.getX())**2)**.5) < 2.0):
-            self.Attack(mainSpawn.getHealth, mainChar)
+            self.Attack(hero.getHealth(), hero)
         else:
-            pathfind(x,y)
+            self.pathfind(x,y)
         

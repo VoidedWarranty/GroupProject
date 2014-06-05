@@ -31,7 +31,7 @@ def moveUp(event): #hero's movement: up
     Link.setHealth(int(Link.getHealth())-2)
     print Link.getHealth()
     canvas.coords(MainChar,Link.getX(),Link.getY())
-    actMove(numMob(),canvas)
+    actMove(numMob(),canvas, Link)
     canvas.delete(bob)
     createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
     #print "done"
@@ -42,25 +42,25 @@ def moveDown(event):#hero's movement: down
     Link.moveDown()
     canvas.coords(MainChar,Link.getX(),Link.getY())
     createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
-    actMove(numMob(),canvas)
+    actMove(numMob(),canvas, Link)
     root.update()    
 def moveLeft(event):#hero's movement: left
     global MainChar, x, y, canvas
     Link.moveLeft()
     canvas.coords(MainChar,Link.getX(),Link.getY())
     createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
-    actMove(numMob(),canvas)
+    actMove(numMob(),canvas, Link)
     root.update()    
 def moveRight(event):#hero's movement: right
     global MainChar, x, y, canvas, Link
     Link.moveRight()
     canvas.coords(MainChar,Link.getX(),Link.getY())
     createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
-    actMove(numMob(),canvas)
+    actMove(numMob(),canvas, Link)
     root.update()
 def useItem(event): #use an item in your hand
     itemUse(None)
-    actMove(numMob())
+    actMove(numMob(),canvas, Link)
     print "useItem Method works"
     root.update()
     
