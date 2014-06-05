@@ -20,7 +20,7 @@ def mobSpawn(r,inn): #spawns a random amount of mobs for each floor
     d={}
     for x in range(i):
             d["mob{0}".format(x)]= mob(10,10,2,None,200-(x*40),400)
-            r.create_image(200-(x*40),400, image=inn)
+            d["pic{0}".format(x)]= r.create_image(200-(x*40),400, image=inn)
     print d
         
         
