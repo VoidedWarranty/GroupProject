@@ -10,4 +10,3 @@ def hasItem():
 
 def items(): #this is a main method that would create weapons and potions for the person to use
     print "items are created"
-    
