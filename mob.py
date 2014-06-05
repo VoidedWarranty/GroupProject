@@ -95,7 +95,7 @@ class mob:
         listMoves = [(((y-self.getY()-40)**2+(x-self.getX())**2)**.5), (((y-self.getY()+40)**2+(x-self.getX())**2)**.5), (((y-self.getY())**2+(x-self.getX()-40)**2)**.5), (((y-self.getY())**2+(x-self.getX()+40)**2)**.5)]
         m=0
         mi=0
-        for i in range(len(myList)):
+        for i in range(len(listMoves)):
             if m<listMoves[i]:
                 m=myList[i]
                 mi=i
