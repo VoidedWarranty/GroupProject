@@ -25,6 +25,7 @@ def quitApp(event):#<---- how to quit the app and save
     save()
     root.destroy()
 
+
 def moveUp(event): #hero's movement: up
     global MainChar, x, y, canvas
     Link.moveUp()
@@ -112,7 +113,7 @@ def start():
 
 
     photoimage = ImageTk.PhotoImage(Image.open("dungeonTile.jpg"))
-    mainChar = ImageTk.PhotoImage(Image.open("Karel.png"))
+    mainChar = ImageTk.PhotoImage(Image.open("CobaltKnight.png"))
     enemy = ImageTk.PhotoImage(Image.open("LobsterRoach.png"))
     im = Image.open("Karel.png")
     print im.mode
