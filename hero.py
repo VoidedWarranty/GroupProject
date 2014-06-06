@@ -11,16 +11,14 @@ from interface import *
 from fileSave import *
 from Sound import *
 class hero:
-    def __init__(self,health, maxhealth, item, x, y,limitX,limitY):
-        global mx,my,mhealth,mmhealth,mitem,potions,f,g
+    def __init__(self,health, maxhealth, item, x, y):
+        global mx,my,mhealth,mmhealth,mitem,potions
         mx = x
         my = y
         mhealth = health
         mmhealth = maxhealth
         mitem = item
         potions=5
-        f=limitX
-        g=limitY
     def getX(self):
         return mx
     def getY(self):
@@ -33,20 +31,16 @@ class hero:
         return mmhealth
     def moveUp(self):
         global my
-        if my>=40 :
-            my-=40
+        my-=40
     def moveDown(self):
-        global my,g
-        if my<=40*(g-1):
-            my+=40
+        global my
+        my+=40
     def moveLeft(self):
         global mx
-        if mx>=40:
-            mx-=40
-    def     moveRight(self):
-        global mx,f
-        if mx<=40*(f-1):
-            mx+=40
+        mx-=40
+    def moveRight(self):
+        global mx
+        mx+=40
     def setItem(self,item):
         global mitem
         mitem = item
