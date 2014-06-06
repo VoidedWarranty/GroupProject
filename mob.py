@@ -13,17 +13,20 @@ from interface import *
 from fileSave import *
 from Sound import *
 from random import *
+from _init_ import *
 global i, d, f
 d = None
 i = None
 f = None
 def actMove(num, r, l):
+    global root
     for x in range(num):
         d["mob" + str(x)].interact(l.getX(), l.getY(), l)
         r.coords(f["pic" + str(x)],d["mob" + str(x)].getX(),d["mob" + str(x)].getY())
         print "derp2"
         #heal(self,3)
-        
+    if (l.getHealth()<=0):
+        canvas.delete(all)
     print "done"
 def mobSpawn(r,inn): #spawns a random amount of mobs for each floor\
     global i, d, f
