@@ -19,6 +19,7 @@ index = 0
 bill = 0
 
 def quitApp(event):#<---- how to quit the app and save
+    """ Quits the app. """
     global root, p, q
     print "stopping..."
     #p.terminate()
@@ -26,6 +27,7 @@ def quitApp(event):#<---- how to quit the app and save
     root.destroy()
 
 def moveUp(event): #hero's movement: up
+    """ Moves the character up one tile. """
     global MainChar, x, y, canvas, bob, enemy
     Link.moveUp()
     actMove(numMob(),canvas, Link, enemy)
@@ -35,6 +37,7 @@ def moveUp(event): #hero's movement: up
     root.update()
     
 def moveDown(event):#hero's movement: down
+    """ Moves the character down one tile. """
     global MainChar, x, y, canvas, bob, enemy
     Link.moveDown()
     actMove(numMob(),canvas, Link, enemy)
@@ -43,6 +46,7 @@ def moveDown(event):#hero's movement: down
     canvas.coords(MainChar,Link.getX(),Link.getY())
     root.update()    
 def moveLeft(event):#hero's movement: left
+    """ Moves the character left one tile. """
     global MainChar, x, y, canvas, bob, enemy
     Link.moveLeft()
     actMove(numMob(),canvas, Link, enemy)
@@ -51,6 +55,7 @@ def moveLeft(event):#hero's movement: left
     canvas.coords(MainChar,Link.getX(),Link.getY())
     root.update()    
 def moveRight(event):#hero's movement: right
+    """Moves the character right one tile. """
     global MainChar, x, y, canvas, Link, bob, enemy
     Link.moveRight()
     actMove(numMob(),canvas, Link, enemy)
@@ -59,6 +64,7 @@ def moveRight(event):#hero's movement: right
     canvas.coords(MainChar,Link.getX(),Link.getY())
     root.update()
 def useItem(event): #use an item in your hand
+    """ Uses the item in the item slot. """
     global Link, enemy
     attackMob(Link)
     actMove(numMob(),canvas, Link, enemy)
@@ -68,6 +74,7 @@ def useItem(event): #use an item in your hand
     root.update()
     
 def mainSpawn(): #spawns main characte
+    """Initializes the character. """
     global MainChar, x, y, canvas, mainChar, Link,f,g
     x = 400
     y = 400
@@ -78,9 +85,11 @@ def mainSpawn(): #spawns main characte
 
 global MainC
 def music():
+    """Plays the soundtrack for the game. """
     winsound.PlaySound('Naruto-Breakdown.wav', winsound.SND_FILENAME)
 
 def start():
+    """ Calaculates several values for the game's run."""
     global canvas, mainChar, root, i, k, bob, Link, bill, f, g, enemy
     user32 = ctypes.windll.user32 #renders size to fullscreen
     w = int(user32.GetSystemMetrics(0))
