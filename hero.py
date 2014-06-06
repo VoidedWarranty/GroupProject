@@ -50,7 +50,7 @@ class hero:
     def setMaxHealth(self,mhealth):
         global mmhealth
         mmhealth= mhealth
-    def heal(self,heal):#heals the player by the specified amount, or to their max health, whichever comes first.
+    def healSelf(self,heal):#heals the player by the specified amount, or to their max health, whichever comes first.
         global mhealth,health
         health+=heal
         if health>mhealth:
@@ -58,5 +58,5 @@ class hero:
     def healthPotion(self): #Uses one health potion, if available.  Heals for 7 health currently.
         global potions
         if potions>0:
-            heal(self,10)
+            healSelf(self,10)
             potions-=1
