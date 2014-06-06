@@ -26,15 +26,11 @@ def quitApp(event):#<---- how to quit the app and save
     root.destroy()
 
 def moveUp(event): #hero's movement: up
-    global MainChar, x, y, canvas, i, k, bob
+    global MainChar, x, y, canvas, 
     Link.moveUp()
-    Link.setHealth(int(Link.getHealth())-2)
-    print Link.getHealth()
     canvas.coords(MainChar,Link.getX(),Link.getY())
-    actMove(numMob(),canvas, Link)
-    canvas.delete(bob)
     createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
-    #print "done"
+    actMove(numMob(),canvas, Link)
     root.update()
     
 def moveDown(event):#hero's movement: down
