@@ -12,12 +12,13 @@ from fileSave import *
 from Sound import *
 class hero:
     def __init__(self,health, maxhealth, item, x, y):
-        global mx,my,mhealth,mmhealth,mitem,potions
+        global mx,my,mhealth,mmhealth,mitem,potions,weapon
         mx = x
         my = y
         mhealth = health
         mmhealth = maxhealth
         mitem = item
+        weapon = 5
         potions=5
     def getX(self):
         return mx
@@ -60,3 +61,9 @@ class hero:
         if potions>0:
             healSelf(self,10)
             potions-=1
+    def setAttack(self, nAttack):
+        global attack
+        attack = nAttack + weapon
+    def getAttack(self):
+        return attack
+    
