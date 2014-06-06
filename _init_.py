@@ -101,6 +101,7 @@ def start():
     root.bind("s", moveDown)
     root.bind("a", moveLeft)
     root.bind("d", moveRight)
+    root.bind("h", healthPotion)
     root.bind("<Button-1>",useItem)
 
     canvas.pack()
