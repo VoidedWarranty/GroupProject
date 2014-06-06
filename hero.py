@@ -12,12 +12,13 @@ from fileSave import *
 from Sound import *
 class hero:
     def __init__(self,health, maxhealth, item, x, y):
-        global mx,my,mhealth,mmhealth,mitem
+        global mx,my,mhealth,mmhealth,mitem,potions
         mx = x
         my = y
         mhealth = health
         mmhealth = maxhealth
         mitem = item
+        potions=5
     def getX(self):
         return mx
     def getY(self):
