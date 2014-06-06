@@ -71,7 +71,7 @@ def mainSpawn(): #spawns main characte
     global MainChar, x, y, canvas, mainChar, Link,f,g
     x = 400
     y = 400
-    Link = hero(20,20,None,x,y,f,g)
+    Link = hero(20,20,None,x,y,f,g,20)
     #mainChar = ImageTk.PhotoImage(Image.open("Karel.jpg"))
     MainChar = canvas.create_image(x,y, image=mainChar, tag='MainC')
     #print "main character has been called"
@@ -113,7 +113,7 @@ def start():
 
 
     photoimage = ImageTk.PhotoImage(Image.open("dungeonTile.jpg"))
-    mainChar = ImageTk.PhotoImage(Image.open("Karel.png"))
+    mainChar = ImageTk.PhotoImage(Image.open("CobaltKnight.png"))
     enemy = ImageTk.PhotoImage(Image.open("LobsterRoach.png"))
     im = Image.open("Karel.png")
     print im.mode

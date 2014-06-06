@@ -11,7 +11,7 @@ from interface import *
 from fileSave import *
 from Sound import *
 class hero:
-    def __init__(self,health, maxhealth, item, x, y,limitX,limitY):
+    def __init__(self,health, maxhealth, item, x, y,limitX,limitY,mattack):
         global mx,my,mhealth,mmhealth,mitem,potions,f,g
         mx = x
         my = y
@@ -21,6 +21,7 @@ class hero:
         potions=5
         f=limitX
         g=limitY
+        attack = mattack
     def getX(self):
         return mx
     def getY(self):
@@ -56,6 +57,11 @@ class hero:
     def setMaxHealth(self,mhealth):
         global mmhealth
         mmhealth= mhealth
+    def setAttack(self, nAttack):
+        global attack
+        attack = nAttack
+    def getAttack(self):
+        return attack
     def healSelf(self,heal):#heals the player by the specified amount, or to their max health, whichever comes first.
         global mhealth,health
         health+=heal

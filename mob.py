@@ -37,6 +37,12 @@ def mobSpawn(r,inn): #spawns a random amount of mobs for each floor\
             d["mob{0}".format(x)]= mob(10,10,2,None,200-(x*40),400)
             f["pic{0}".format(x)]= r.create_image(d["mob"+str(x)].getX(),d["mob"+str(x)].getY(), image=inn)
             print "derp"
+def attackMob(l):
+    global d, f
+    for x in range(numMob()):
+        if d["mob" + str(x)].getX() == l.getX() and d["mob" + str(x)].getY() == l.getY():
+            d["mob" + str(x)].setHealth(d["mob" + str(x)].getHealth()-l.getAttack())
+        
 
 def numMob():
     global i
