@@ -12,7 +12,7 @@ from fileSave import *
 from Sound import *
 class hero:
     def __init__(self,health, maxhealth, item, x, y,limitX,limitY,mattack):
-        global mx,my,mhealth,mmhealth,mitem,potions,f,g
+        global mx,my,mhealth,mmhealth,mitem,potions,f,g, attack
         mx = x
         my = y
         mhealth = health
@@ -61,6 +61,7 @@ class hero:
         global attack
         attack = nAttack
     def getAttack(self):
+        global attack
         return attack
     def healSelf(self,heal):#heals the player by the specified amount, or to their max health, whichever comes first.
         global mhealth,health

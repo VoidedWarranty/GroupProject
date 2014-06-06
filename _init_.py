@@ -60,7 +60,8 @@ def moveRight(event):#hero's movement: right
     canvas.coords(MainChar,Link.getX(),Link.getY())
     root.update()
 def useItem(event): #use an item in your hand
-    itemUse(None)
+    global Link
+    attackMob(Link)
     actMove(numMob(),canvas, Link)
     bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
     canvas.itemconfig(bob, text=bar)
@@ -71,7 +72,7 @@ def mainSpawn(): #spawns main characte
     global MainChar, x, y, canvas, mainChar, Link,f,g
     x = 400
     y = 400
-    Link = hero(20,20,None,x,y,f,g,20)
+    Link = hero(100000,100000,None,x,y,f,g,20)
     #mainChar = ImageTk.PhotoImage(Image.open("Karel.jpg"))
     MainChar = canvas.create_image(x,y, image=mainChar, tag='MainC')
     #print "main character has been called"
@@ -105,7 +106,7 @@ def start():
     root.bind("a", moveLeft)
     root.bind("d", moveRight)
     #root.bind("h", healthPotion)
-    root.bind("<space>",useItem)
+    root.bind("<space>", useItem)
 
     canvas.pack()
 

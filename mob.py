@@ -21,14 +21,17 @@ f = None
 def actMove(num, r, l):
     global root
     for x in range(num):
-        d["mob" + str(x)].interact(l.getX(), l.getY(), l)
-        r.coords(f["pic" + str(x)],d["mob" + str(x)].getX(),d["mob" + str(x)].getY())
-        print "derp2"
-        #heal(self,3)
+        if (d["mob" + str(x)].getAlive() == True):
+            d["mob" + str(x)].interact(l.getX(), l.getY(), l)
+            r.coords(f["pic" + str(x)],d["mob" + str(x)].getX(),d["mob" + str(x)].getY())
+            print d["mob" + str(x)].getAlive()
+            #heal(self,3)
+        else:
+            r.delete(f["pic" + str(x)])         
     if (l.getHealth()<=0):
         r.delete('all')
     print "done"
-def mobSpawn(r,inn): #spawns a random amount of mobs for each floor\
+def mobSpawn(r,inn): #spawns a random amount of mobs for each floor
     global i, d, f
     i = randint(1,6)
     d={}
@@ -42,6 +45,8 @@ def attackMob(l):
     for x in range(numMob()):
         if d["mob" + str(x)].getX() == l.getX() and d["mob" + str(x)].getY() == l.getY():
             d["mob" + str(x)].setHealth(d["mob" + str(x)].getHealth()-l.getAttack())
+            d["mob" + str(x)].getAlive()
+        else:
         
 
 def numMob():
@@ -52,19 +57,25 @@ def numMob():
 
 class mob:
     def __init__(self,health, maxhealth, mattack, item, x, y):
-        global mx,my,mhealth,mmhealth,mitem, attack
+        global mx,my,mhealth,mmhealth,mitem, attack, alive
         mx = x
         my = y
         mhealth = health
         mmhealth = maxhealth
         mitem = item
         attack = mattack
+        alive = True
     def getX(self):
         return mx
     def getY(self):
         return my
     def getItem(self):
         return mitem
+    def getAlive(self):
+        global alive
+        if (self.getHealth()<=0):
+            alive = False
+        return alive
     def getHealth(self):
         return mhealth
     def getMaxHealth(self):
@@ -95,6 +106,7 @@ class mob:
         attack = nAttack
     def getAttack(self):
         return attack
+    
     def attack(self, heroHealth, r):
         r.setHealth(heroHealth - (self.getAttack() + randint(-(self.getAttack()/10), self.getAttack()/10)))
     def pathfind(self, x, y):
