@@ -26,7 +26,7 @@ def actMove(num, r, l):
         print "derp2"
         #heal(self,3)
     if (l.getHealth()<=0):
-        canvas.delete(all)
+        r.delete('all')
     print "done"
 def mobSpawn(r,inn): #spawns a random amount of mobs for each floor\
     global i, d, f
