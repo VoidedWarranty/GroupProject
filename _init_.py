@@ -69,10 +69,10 @@ def useItem(event): #use an item in your hand
     root.update()
     
 def mainSpawn(): #spawns main characte
-    global MainChar, x, y, canvas, mainChar, Link
+    global MainChar, x, y, canvas, mainChar, Link,f,g
     x = 400
     y = 400
-    Link = hero(20,20,None,x,y)
+    Link = hero(20,20,None,x,y,f,g)
     #mainChar = ImageTk.PhotoImage(Image.open("Karel.jpg"))
     MainChar = canvas.create_image(x,y, image=mainChar, tag='MainC')
     #print "main character has been called"
