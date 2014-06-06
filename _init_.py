@@ -69,10 +69,10 @@ def useItem(event): #use an item in your hand
     root.update()
     
 def mainSpawn(): #spawns main characte
-    global MainChar, x, y, canvas, mainChar, Link
+    global MainChar, x, y, canvas, mainChar, Link,f,g
     x = 400
     y = 400
-    Link = hero(20,20,None,x,y)
+    Link = hero(20,20,None,x,y,f,g)
     #mainChar = ImageTk.PhotoImage(Image.open("Karel.jpg"))
     MainChar = canvas.create_image(x,y, image=mainChar, tag='MainC')
     #print "main character has been called"
@@ -82,7 +82,7 @@ def music():
     winsound.PlaySound('Naruto-Breakdown.wav', winsound.SND_FILENAME)
 
 def start():
-    global canvas, mainChar, root, i, k, bob, Link, bill
+    global canvas, mainChar, root, i, k, bob, Link, bill, f, g
     user32 = ctypes.windll.user32 #renders size to fullscreen
     w = int(user32.GetSystemMetrics(0))
     h = int(user32.GetSystemMetrics(1))
