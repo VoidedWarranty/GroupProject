@@ -82,6 +82,10 @@ def mainSpawn(): #spawns main characte
     #mainChar = ImageTk.PhotoImage(Image.open("Karel.jpg"))
     MainChar = canvas.create_image(x,y, image=mainChar, tag='MainC')
     #print "main character has been called"
+def bossSpawn(event):
+    global f,g
+    boss = mob(500,500,20,None,(f/2)*40,(g/2)*40)
+    canvas.create_image(boss.getX(),boss.getY(),image = Big)
 
 global MainC
 def music():
@@ -115,7 +119,7 @@ def start():
     root.bind("d", moveRight)
     #root.bind("h", healthPotion)
     root.bind("<space>", useItem)
-
+    root.bind("b", bossSpawn)
     canvas.pack()
 
 
