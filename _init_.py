@@ -26,43 +26,42 @@ def quitApp(event):#<---- how to quit the app and save
     root.destroy()
 
 def moveUp(event): #hero's movement: up
-    global MainChar, x, y, canvas, bob
+    global MainChar, x, y, canvas, bob, enemy
     Link.moveUp()
-    actMove(numMob(),canvas, Link)
+    actMove(numMob(),canvas, Link, enemy)
     bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
     canvas.itemconfig(bob, text=bar)
     canvas.coords(MainChar,Link.getX(),Link.getY())
-    actMove(numMob(),canvas, Link)
     root.update()
     
 def moveDown(event):#hero's movement: down
-    global MainChar, x, y, canvas, bob
+    global MainChar, x, y, canvas, bob, enemy
     Link.moveDown()
-    actMove(numMob(),canvas, Link)
+    actMove(numMob(),canvas, Link, enemy)
     bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
     canvas.itemconfig(bob, text=bar)
     canvas.coords(MainChar,Link.getX(),Link.getY())
     root.update()    
 def moveLeft(event):#hero's movement: left
-    global MainChar, x, y, canvas, bob
+    global MainChar, x, y, canvas, bob, enemy
     Link.moveLeft()
-    actMove(numMob(),canvas, Link)
+    actMove(numMob(),canvas, Link, enemy)
     bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
     canvas.itemconfig(bob, text=bar)
     canvas.coords(MainChar,Link.getX(),Link.getY())
     root.update()    
 def moveRight(event):#hero's movement: right
-    global MainChar, x, y, canvas, Link, bob
+    global MainChar, x, y, canvas, Link, bob, enemy
     Link.moveRight()
-    actMove(numMob(),canvas, Link)
+    actMove(numMob(),canvas, Link, enemy)
     bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
     canvas.itemconfig(bob, text=bar)
     canvas.coords(MainChar,Link.getX(),Link.getY())
     root.update()
 def useItem(event): #use an item in your hand
-    global Link
+    global Link, enemy
     attackMob(Link)
-    actMove(numMob(),canvas, Link)
+    actMove(numMob(),canvas, Link, enemy)
     bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
     canvas.itemconfig(bob, text=bar)
     print "useItem Method works"
@@ -72,7 +71,7 @@ def mainSpawn(): #spawns main characte
     global MainChar, x, y, canvas, mainChar, Link,f,g
     x = 400
     y = 400
-    Link = hero(100000,100000,None,x,y,f,g,20)
+    Link = hero(30,30,None,x,y,f,g,20)
     #mainChar = ImageTk.PhotoImage(Image.open("Karel.jpg"))
     MainChar = canvas.create_image(x,y, image=mainChar, tag='MainC')
     #print "main character has been called"
@@ -82,7 +81,7 @@ def music():
     winsound.PlaySound('Naruto-Breakdown.wav', winsound.SND_FILENAME)
 
 def start():
-    global canvas, mainChar, root, i, k, bob, Link, bill, f, g
+    global canvas, mainChar, root, i, k, bob, Link, bill, f, g, enemy
     user32 = ctypes.windll.user32 #renders size to fullscreen
     w = int(user32.GetSystemMetrics(0))
     h = int(user32.GetSystemMetrics(1))

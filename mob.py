@@ -18,16 +18,27 @@ global i, d, f
 d = None
 i = None
 f = None
-def actMove(num, r, l):
+def actMove(num, r, l, pic):
     global root
+    actions = 0 
     for x in range(num):
         if (d["mob" + str(x)].getAlive() == True):
             d["mob" + str(x)].interact(l.getX(), l.getY(), l)
             r.coords(f["pic" + str(x)],d["mob" + str(x)].getX(),d["mob" + str(x)].getY())
             print d["mob" + str(x)].getAlive()
-            #heal(self,3)
+            actions +=1
+            l.setHealth(l.getHealth() + 3)
         else:
-            r.delete(f["pic" + str(x)])         
+            r.delete(f["pic" + str(x)])
+    if (actions == 0):
+        mobSpawn(r, pic)
+        l.setMaxHealth(l.getMaxHealth() + 20)
+        l.setHealth(l.getHealth()+20)
+        l.setAttack(l.getAttack() + 5)
+        #l.setLevel(l.getLevel()+1)
+        #l.setMaxHealth(l.getMaxHealth())
+        #l.setAttack(l.getAttack())
+        
     if (l.getHealth()<=0):
         r.delete('all')
     print "done"
@@ -46,7 +57,7 @@ def attackMob(l):
         if d["mob" + str(x)].getX() == l.getX() and d["mob" + str(x)].getY() == l.getY():
             d["mob" + str(x)].setHealth(d["mob" + str(x)].getHealth()-l.getAttack())
             d["mob" + str(x)].getAlive()
-        else:
+        
         
 
 def numMob():
@@ -109,6 +120,7 @@ class mob:
     
     def attack(self, heroHealth, r):
         r.setHealth(heroHealth - (self.getAttack() + randint(-(self.getAttack()/10), self.getAttack()/10)))
+        print heroHealth - (self.getAttack() + randint(-(self.getAttack()/10), self.getAttack()/10))
     def pathfind(self, x, y):
         listMoves = [(((y-self.getY()-40)**2+(x-self.getX())**2)**.5), (((y-self.getY()+40)**2+(x-self.getX())**2)**.5), (((y-self.getY())**2+(x-self.getX()-40)**2)**.5), (((y-self.getY())**2+(x-self.getX()+40)**2)**.5)]
         m=0

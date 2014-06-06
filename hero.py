@@ -22,8 +22,10 @@ class hero:
         f=limitX
         g=limitY
         attack = mattack
+        
     def getX(self):
         return mx
+
     def getY(self):
         return my
     def getItem(self):
@@ -53,7 +55,10 @@ class hero:
         mitem = item
     def setHealth(self,health):
         global mhealth
-        mhealth=health
+        if (self.getHealth()<self.getMaxHealth()):
+            mhealth=health
+        else:
+            mhealth = self.getMaxHealth()
     def setMaxHealth(self,mhealth):
         global mmhealth
         mmhealth= mhealth
@@ -63,6 +68,14 @@ class hero:
     def getAttack(self):
         global attack
         return attack
+    def getLevel(self):
+        global level
+        return level
+    def setLevel(self, slevel):
+        global level
+        level = slevel
+        self.setAttack(self.getAttack())
+        self.setMaxHealth(self.getMaxHealth())
     def healSelf(self,heal):#heals the player by the specified amount, or to their max health, whichever comes first.
         global mhealth,health
         health+=heal
