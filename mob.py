@@ -22,6 +22,7 @@ def actMove(num, r, l):
         d["mob" + str(x)].interact(l.getX(), l.getY(), l)
         r.coords(f["pic" + str(x)],d["mob" + str(x)].getX(),d["mob" + str(x)].getY())
         print "derp2"
+        heal(self,3)
         
     print "done"
 def mobSpawn(r,inn): #spawns a random amount of mobs for each floor\
