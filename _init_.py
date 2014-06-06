@@ -82,7 +82,7 @@ def music():
     winsound.PlaySound('Naruto-Breakdown.wav', winsound.SND_FILENAME)
 
 def start():
-    global canvas, mainChar, root, i, k, bob, Link, bill
+    global canvas, mainChar, root, i, k, bob, Link, bill, f, g
     user32 = ctypes.windll.user32 #renders size to fullscreen
     w = int(user32.GetSystemMetrics(0))
     h = int(user32.GetSystemMetrics(1))
