@@ -49,5 +49,9 @@ class hero:
     def setMaxHealth(self,mhealth):
         global mmhealth
         mmhealth= mhealth
-    
+    def heal(self,health,mhealth,heal):
+        global mhealth,health
+        health+=heal
+        if health>mhealth:
+            health=mhealth
     
