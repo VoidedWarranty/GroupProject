@@ -9,7 +9,6 @@ import sys
 import winsound
 from items import *
 from mob import *
-from interface import *
 from fileSave import *
 from Sound import *
 from random import *

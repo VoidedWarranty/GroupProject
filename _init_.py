@@ -10,7 +10,6 @@ import sys
 import winsound
 from items import *
 from mob import *
-from interface import *
 from fileSave import *
 from Sound import *
 from hero import *
@@ -29,35 +28,49 @@ def moveUp(event): #hero's movement: up
     global MainChar, x, y, canvas, 
     Link.moveUp()
     canvas.coords(MainChar,Link.getX(),Link.getY())
+<<<<<<< HEAD
+    actMove(numMob(),canvas, Link)
+    bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
+    canvas.itemconfig(bob, text=bar)
+    #createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
+=======
     createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
     actMove(numMob(),canvas, Link)
+>>>>>>> b24b25686c88fd571e2701027dc377b7b2287b68
     root.update()
-    
 def moveDown(event):#hero's movement: down
-    global MainChar, x, y, canvas
+    global MainChar, x, y, canvas, bob
     Link.moveDown()
     canvas.coords(MainChar,Link.getX(),Link.getY())
-    createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
     actMove(numMob(),canvas, Link)
+    bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
+    canvas.itemconfig(bob, text=bar)
+    #createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
     root.update()    
 def moveLeft(event):#hero's movement: left
-    global MainChar, x, y, canvas
+    global MainChar, x, y, canvas, bob
     Link.moveLeft()
     canvas.coords(MainChar,Link.getX(),Link.getY())
-    createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
     actMove(numMob(),canvas, Link)
+    bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
+    canvas.itemconfig(bob, text=bar)
+    #createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
     root.update()    
 def moveRight(event):#hero's movement: right
-    global MainChar, x, y, canvas, Link
+    global MainChar, x, y, canvas, Link, bob
     Link.moveRight()
     canvas.coords(MainChar,Link.getX(),Link.getY())
-    createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
     actMove(numMob(),canvas, Link)
+    bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
+    canvas.itemconfig(bob, text=bar)
+    #createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
     root.update()
 def useItem(event): #use an item in your hand
     itemUse(None)
     actMove(numMob(),canvas, Link)
     print "useItem Method works"
+    bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
+    canvas.itemconfig(bob, text=bar)
     root.update()
     
 def mainSpawn(): #spawns main characte
@@ -122,8 +135,12 @@ def start():
     mobSpawn(canvas,enemy)  #spawns mobs
     #bob = Label(canvas,width=w,height=h, text = "health", fg = 'red', font = ('Times', 30, 'bold'), anchor = 'nw')
     #bob.pack()
-    bob = canvas.create_text(w,h, text = "bob", fill = "red", font = ('Times', 30, 'bold'), anchor = 'nw')
-    createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth()) #creates user interface
+    bob = canvas.create_text(i,k, text = "bob", fill = "red", font = ('Times', 30, 'bold'), anchor = 'nw')
+    bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
+    #r.delete(f)
+    print bar
+    canvas.itemconfig(bob, text=bar)
+    #createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth()) #creates user interface
     #bob.pack()
     frame.pack()
     print "music"
