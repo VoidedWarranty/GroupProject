@@ -3,6 +3,7 @@
 import sys
 
 def playWAV( fname ):
+  """ Plays an audio clip in WAV format"""
   import pymedia.audio.sound as sound
   import time, wave
   f= wave.open( fname, 'rb' )
