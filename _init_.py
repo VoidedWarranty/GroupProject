@@ -59,6 +59,12 @@ def useItem(event): #use an item in your hand
     actMove(numMob(),canvas, Link)
     print "useItem Method works"
     root.update()
+def healthPotion(event):
+    global Link,potions
+    if potions>0:
+        Link.healSelf(7)
+        potions-=1
+        print "You drank a potion!"
     
 def mainSpawn(): #spawns main characte
     global MainChar, x, y, canvas, mainChar, Link
