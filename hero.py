@@ -30,17 +30,21 @@ class hero:
     def getMaxHealth(self):
         return mmhealth
     def moveUp(self):
-        global my
-        my-=40
+        global my,g
+        if my>=40 :
+            my-=40
     def moveDown(self):
-        global my
-        my+=40
+        global my,g
+        if my<=g*40+1
+            my+=40
     def moveLeft(self):
-        global mx
+        global mx,f
+        if mx>=40:
         mx-=40
-    def moveRight(self):
-        global mx
-        mx+=40
+    def     moveRight(self):
+        global mx,f
+        if mx<=40*f+1
+            mx+=40
     def setItem(self,item):
         global mitem
         mitem = item
