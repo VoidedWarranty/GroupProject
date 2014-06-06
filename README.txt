@@ -5,3 +5,4 @@ s is down, attacks if enemy is occupying that position
 d is right, attacks if enemy is occupying that position
 a is left, attacks if enemy is occupying that position
 h uses a health potion
+space attacks the mob on your square
