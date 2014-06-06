@@ -27,45 +27,46 @@ def quitApp(event):#<---- how to quit the app and save
 
 
 def moveUp(event): #hero's movement: up
-    global MainChar, x, y, canvas
+    global MainChar, x, y, canvas, bob
     Link.moveUp()
+    actMove(numMob(),canvas, Link)
+    bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
+    canvas.itemconfig(bob, text=bar)
     canvas.coords(MainChar,Link.getX(),Link.getY())
-    createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
     actMove(numMob(),canvas, Link)
     root.update()
     
 def moveDown(event):#hero's movement: down
-    global MainChar, x, y, canvas
+    global MainChar, x, y, canvas, bob
     Link.moveDown()
-    canvas.coords(MainChar,Link.getX(),Link.getY())
-    createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
     actMove(numMob(),canvas, Link)
+    bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
+    canvas.itemconfig(bob, text=bar)
+    canvas.coords(MainChar,Link.getX(),Link.getY())
     root.update()    
 def moveLeft(event):#hero's movement: left
-    global MainChar, x, y, canvas
+    global MainChar, x, y, canvas, bob
     Link.moveLeft()
-    canvas.coords(MainChar,Link.getX(),Link.getY())
-    createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
     actMove(numMob(),canvas, Link)
+    bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
+    canvas.itemconfig(bob, text=bar)
+    canvas.coords(MainChar,Link.getX(),Link.getY())
     root.update()    
 def moveRight(event):#hero's movement: right
-    global MainChar, x, y, canvas, Link
+    global MainChar, x, y, canvas, Link, bob
     Link.moveRight()
-    canvas.coords(MainChar,Link.getX(),Link.getY())
-    createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth())
     actMove(numMob(),canvas, Link)
+    bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
+    canvas.itemconfig(bob, text=bar)
+    canvas.coords(MainChar,Link.getX(),Link.getY())
     root.update()
 def useItem(event): #use an item in your hand
     itemUse(None)
     actMove(numMob(),canvas, Link)
+    bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
+    canvas.itemconfig(bob, text=bar)
     print "useItem Method works"
     root.update()
-def healthPotion(event):
-    global Link,potions
-    if potions>0:
-        Link.healSelf(7)
-        potions-=1
-        print "You drank a potion!"
     
 def mainSpawn(): #spawns main characte
     global MainChar, x, y, canvas, mainChar, Link
@@ -129,8 +130,12 @@ def start():
     mobSpawn(canvas,enemy)  #spawns mobs
     #bob = Label(canvas,width=w,height=h, text = "health", fg = 'red', font = ('Times', 30, 'bold'), anchor = 'nw')
     #bob.pack()
-    bob = canvas.create_text(w,h, text = "bob", fill = "red", font = ('Times', 30, 'bold'), anchor = 'nw')
-    createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth()) #creates user interface
+    bob = canvas.create_text(40,40, text = "bob", fill = "red", font = ('Times', 30, 'bold'), anchor = 'nw')
+    bar = "health " + str(Link.getHealth()) + "/" + str(Link.getMaxHealth())
+    canvas.itemconfig(bob, text=bar)
+    canvas.create_rectangle(w-120, 40 , w-40, 120, fill='black', outline = 'white')
+    canvas.create_rectangle(w-240, 40 , w-160, 120, fill='black', outline = 'white')
+    #createInterface(bob,canvas,i,k,Link.getHealth(),Link.getMaxHealth()) #creates user interface
     #bob.pack()
     frame.pack()
     print "music"
